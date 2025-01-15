@@ -1,0 +1,5 @@
+first = int(input())
+second = int(input())
+third = int(input())
+sort_bowl = sorted([first, second, third])
+print(sort_bowl[1])
