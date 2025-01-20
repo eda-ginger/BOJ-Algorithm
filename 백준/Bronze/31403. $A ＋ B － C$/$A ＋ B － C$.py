@@ -1,0 +1,5 @@
+one = str(input())
+two = str(input())
+thr = str(input())
+print(int(one) + int(two) - int(thr))
+print(int(one + two) - int(thr))
