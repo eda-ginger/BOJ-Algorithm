@@ -1,2 +1,1 @@
-n = int(input())
-print('a' * n)
+print('a'*int(input()))
