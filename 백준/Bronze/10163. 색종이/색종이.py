@@ -1,24 +1,20 @@
-n = int(input())
-paper = []  # 색종이 좌표 리스트
+N = int(input())
+info = []
+array = [[-1] * 1001 for _ in range(1001)]
 
-for _ in range(n):
-    x, y, w, h = map(int, input().split())
-    coords = []
-    for i in range(x, x + w):
-        for j in range(y, y + h):
-            coords.append((i, j))
-    paper.append(coords)
+max_index_height, max_index_width = 0, 0  # 최대 인덱스를 저장할 변수 선언
+for k in range(N):
+    x1, y1, w, h = list(map(int, input().split()))  # 각각 x,y,넓이,높이 정보를 받는다.
 
-seen = set()
-visible_area = [0] * n  # 색종이 보이는 면적 리스트
+    if max_index_height < y1 + h:  # 최대 행의 인덱스가 있다면.
+        max_index_height = y1 + h  # 그 행을 최대행인덱스로 설정해준다.
 
-# 마지막 색종이부터 순회 (뒤에서부터 붙은 색종이 우선)
-for idx in reversed(range(n)):
-    for coord in paper[idx]:
-        if coord not in seen:
-            seen.add(coord)
-            visible_area[idx] += 1
+    for a in range(y1, y1 + h):  # 높이 길이만큼돈다.
+        array[a][x1:(x1 + w)] = [k] * w  # x1 ~ x1+w 까지의 배열을 모두 [k] * w 로 바꿔준다.
 
-# 출력
-for count in visible_area:
-    print(count)
+for k in range(N):  # N개수 만큼 돈다.
+    count = 0  # 넓이를 저장할 변수 선언
+    for i in range(max_index_height):  # 배열 길이만큼돈다.
+        count += array[i].count(k)
+
+    print(count)  # 해당 개수를 출력
